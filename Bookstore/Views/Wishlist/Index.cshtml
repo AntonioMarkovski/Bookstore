@@ -1,0 +1,224 @@
+﻿@model Bookstore.Models.BookViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="bg-dark text-white text-center p-3">Wishlist</h1>
+
+<div class="custom-container">
+    <table class="table table-hover">
+        <thead>
+            <tr class="wishlist-header">
+                <th>
+                    <input type="checkbox" name="addToCart" id="checkAll" /> Select All
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhotoURL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AuthorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.AllBooksFromWishlistByLoggedInUser)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="addToCartSelected" value="@item.Id" />
+                    </td>
+                    <td>
+                        <img src="~/images/@item.PhotoURL" width="100" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AuthorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-block btn-info"><i class="fas fa-info-circle"></i> &nbsp; Details</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-block btn-danger" onclick="DeleteItemFromWishlist(@item.Id)">
+                            <i class="fas fa-trash-alt"></i> &nbsp; Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+            <tr class="total-style">
+                <td colspan="6"></td>
+                <td>Total:</td>
+                <td> &#36; @Html.DisplayFor(modelItem => modelItem.WishlistTotalPrice)</td>
+            </tr>
+            <tr class="total-style">
+                <td colspan="8">
+                    <button class="btn btn-block btn-success" id="addToCartAction" disabled>
+                        <i class="fas fa-cart-plus"></i> &nbsp; Add To Cart
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="actionChooseModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" id="modalDialogStyle" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> <span id="detailsTitle"></span> Successfully Added Books To Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Choose option to continue:</h4>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <button type="button" class="btn btn-outline-secondary btn-block" id="stayToWishlist" data-dismiss="modal">Stay to Wishlist</button>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <a asp-action="GoToCart" class="btn btn-outline-success btn-block">Go to Shopping Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        function DeleteItemFromWishlist(id) {
+            $.ajax({
+                type: "POST",
+                url: "/Wishlist/Delete/" + id,
+                success: function (data) {
+                    //console.log(data);
+                    new Noty({
+                        type: 'alert',
+                        layout: 'bottomLeft',
+                        timeout: 1500,
+                        progressBar: true,
+                        text: 'Successfully Deleted Book: ' + data.data.title + ' From Wishlist',
+                        theme: 'sunset'
+                    }).show();
+
+                    setTimeout(function () {
+                        if (data) {
+                            window.location = data.url;
+                        }
+                    }, 1800);
+                },
+                error: function () {
+                    new Noty({
+                        type: 'error',
+                        layout: 'bottomLeft',
+                        timeout: 3000,
+                        progressBar: true,
+                        text: 'Error Delete Book From Wishlist',
+                        theme: 'sunset'
+                    }).show();
+                }
+            });
+        };
+
+
+        $(function () {
+
+            $("#checkAll").click(function () {
+                $("input[name='addToCartSelected']").prop("checked", this.checked);
+                if ($("input[name='addToCartSelected']:checked").length > 0) {
+                    $("#addToCartAction").prop("disabled", false);
+                } else {
+                    $("#addToCartAction").prop("disabled", true);
+                }
+            });
+
+
+            $("input[name='addToCartSelected']").click(function () {
+                if ($("input[name='addToCartSelected']").length == $("input[name='addToCartSelected']:checked").length) {
+                    $("#checkAll").prop("checked", true);
+                } else {
+                    $("#checkAll").prop('checked', false);
+                }
+                if ($("input[name='addToCartSelected']:checked").length > 0) {
+                    $("#addToCartAction").prop("disabled", false);
+                } else {
+                    $("#addToCartAction").prop("disabled", true);
+                }
+            });
+
+
+            $("#addToCartAction").click(function () {
+                var books = [];
+
+                $.each($("input[name='addToCartSelected']:checked"), function () {
+                    books.push($(this).val());
+                });
+                // console.log(books);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Wishlist/AddToCartFromWishlist/",
+                    dataType: 'json',
+                    data: { 'bookIds': books },
+                    success: function (data) {
+                        //console.log(data);
+                        new Noty({
+                            type: 'success',
+                            layout: 'bottomLeft',
+                            timeout: 500,
+                            progressBar: true,
+                            text: 'Successfully Added Book To Cart',
+                            theme: 'sunset'
+                        }).show();
+
+                        setTimeout(function () {
+                            $('#actionChooseModal').modal('show');
+                        }, 800);
+                    },
+                    error: function () {
+                        new Noty({
+                            type: 'error',
+                            layout: 'bottomLeft',
+                            timeout: 3000,
+                            progressBar: true,
+                            text: 'Error => Unsuccessfully Added Book From Wishlist To Shopping Cart',
+                            theme: 'sunset'
+                        }).show();
+                    }
+                });
+            });
+
+
+            $("#stayToWishlist").click(function () {
+                location.reload();
+            });
+
+        });
+
+    </script>
+}
+

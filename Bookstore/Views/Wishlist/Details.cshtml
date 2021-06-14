@@ -1,0 +1,158 @@
+﻿@model Bookstore.Entities.Book
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="custom-container">
+    <h1>Details</h1>
+
+    <div>
+        <h4>Book</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AuthorName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AuthorName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Author)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Author.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.YearOfIssue)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.YearOfIssue)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumberOfPages)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumberOfPages)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PublisherName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PublisherName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Publisher)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Publisher.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Genre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Category.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BookType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.BookType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Language)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Language)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Edition)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Edition)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Dimensions)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Dimensions)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Weight)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Weight)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Copies)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Copies)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Shipping)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Shipping)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PhotoURL)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PhotoURL)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SoldItems)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SoldItems)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>

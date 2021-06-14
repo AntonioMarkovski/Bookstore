@@ -1,0 +1,170 @@
+﻿@model Bookstore.Entities.Book
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="text-uppercase text-center">Edit Book</h1>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="AuthorName" class="control-label"></label>
+                        <input asp-for="AuthorName" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-12">
+                        <label asp-for="AuthorID" class="control-label"></label>
+                        <select asp-for="AuthorID" class="form-control" asp-items="ViewBag.AuthorList"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="YearOfIssue" class="control-label"></label>
+                        <input asp-for="YearOfIssue" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="NumberOfPages" class="control-label"></label>
+                        <input asp-for="NumberOfPages" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="PublisherName" class="control-label"></label>
+                        <input asp-for="PublisherName" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="PublisherID" class="control-label"></label>
+                        <select asp-for="PublisherID" class="form-control" asp-items="ViewBag.PublisherList"></select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="UserId" class="control-label"></label>
+                        <input asp-for="UserId" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="Genre" class="control-label"></label>
+                        <input asp-for="Genre" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="CategoryName" class="control-label"></label>
+                        <input asp-for="CategoryName" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="CategoryID" class="control-label"></label>
+                        @* <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>*@
+                        @Html.DropDownListFor(x => Model.CategoryID, new SelectList(ViewBag.CategoryList, "Value", "Text"),
+                                htmlAttributes: new { @class = "form-control", id = "Category" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="BookType" class="control-label"></label>
+                        <input asp-for="BookType" class="form-control" />
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="BookCoverType" class="control-label"></label>
+                        <input asp-for="BookCoverType" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-12">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="Language" class="control-label"></label>
+                        <input asp-for="Language" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="Country" class="control-label"></label>
+                        <input asp-for="Country" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="Edition" class="control-label"></label>
+                        <input asp-for="Edition" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="Dimensions" class="control-label"></label>
+                        <input asp-for="Dimensions" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="Weight" class="control-label"></label>
+                        <input asp-for="Weight" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="Copies" class="control-label"></label>
+                        <input asp-for="Copies" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="Shipping" class="control-label"></label>
+                        <input asp-for="Shipping" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="SoldItems" class="control-label"></label>
+                        <input asp-for="SoldItems" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-12">
+                        <label asp-for="PhotoURL" class="control-label"></label>
+                        <input asp-for="PhotoURL" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label asp-for="Rating" class="control-label"></label>
+                        <input asp-for="Rating" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="DateAdded" class="control-label"></label>
+                        <input asp-for="DateAdded" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group mt-3">
+                    <div class="col-12">
+                        <input type="submit" value="Edit" class="btn btn-block btn-primary text-uppercase" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

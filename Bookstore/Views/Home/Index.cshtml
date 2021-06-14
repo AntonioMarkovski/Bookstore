@@ -1,0 +1,88 @@
+﻿@model Bookstore.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Bookstore";
+}
+
+<!-- Search Section -->
+<div class="container">
+    <form asp-action="Search">
+        <div class="p-3 search-main">
+            <button class="btn search-btn-icon">
+                <i class="fa fa-search"></i>
+            </button>
+            <input type="text" class="form-control search-box-style" id="searchbook" />
+            <button class="btn btn-success search-btn" id="searchBtn">Search</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- Banner Section -->
+<div class="container-fluid px-0 banner-container text-center text-sm-left">
+    <div class="bookstore-background"></div>
+    <div class="col-12 col-md-7 quotes-section">
+        <h1 class="display-4 banner-text-style1 animate__animated animate__fadeIn animate__slower pt-5">Welcome to our online bookstore !!!</h1>
+        <h4 class="display-4 banner-text-style2 animate__animated animate__fadeIn animate__slower animate__delay-1s">Find your next adventure!</h4>
+        <blockquote class="quote-text-quote" id="quote"></blockquote>
+        <div class="quotes-section">
+            <p class="quote-text-author" id="quote_author"></p>
+            <a class="quote-text-tags text-light badge-pill badge-secondary font-weight-lighter text-center" id="quote_tags"></a>
+        </div>
+    </div>
+</div>
+
+
+<!-- All Books Section -->
+<div class="container-fluid">
+    <h2 class="text-center mt-5">All Books</h2>
+    <h6 class="text-center"><em>List of all books</em></h6>
+    <div class="row pb-5">
+        @foreach (var book in Model.AllBooksList)
+        {
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-5">
+                <div class="card h-100 mx-auto" style="max-width: 350px;">
+                    <div class="image">
+                        <img src="~/photos/@book.PhotoURL" alt="Alternate Text" class="card-img-top" style="height:450px" />
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center d-flex flex-column justify-content-center" style="height:120px">
+                            <h5 class="card-title w-100"><a class="text-dark" href="/Book/Details/@book.Id">@Html.DisplayFor(modelItem => book.Title)</a></h5>
+                            <h6 class=""><em>by <a class="text-dark" href="/Author/Details/@book.AuthorID">@Html.DisplayFor(modelItem => book.AuthorName)</a></em></h6>
+                        </div>
+                        <hr />
+                        <p class="card-text">Category: @Html.DisplayFor(modelItem => book.CategoryName)</p>
+                        <p class="card-text">Genre: @Html.DisplayFor(modelItem => book.Genre)</p>
+                        <p class="card-text">Book Rating: @Html.DisplayFor(modelItem => book.Rating)/5.0</p>
+                        @*@if (ViewContext.HttpContext.User.IsInRole("guest") || ViewContext.HttpContext.User.IsInRole("editor") || ViewContext.HttpContext.User.IsInRole("admin"))
+                            {
+                                <button class="btn btn-secondary btn-block"><i class="fas fa-plus-circle"></i> Add to Wishlist</button>
+                                <button class="btn btn-success btn-block"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                            }*@
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <button class="btn btn-secondary btn-block" id="addToWishlistFromPopular" onclick="AddToWishlist(@book.Id)">
+                                <i class="fas fa-plus"></i> &nbsp; Add To Wishlist
+                            </button>
+                            <button class="btn btn-success btn-block" id="addToCartFromPopular" onclick="AddToCart(@book.Id)">
+                                <i class="fas fa-cart-plus"></i> &nbsp; Add To Cart
+                            </button>
+                        }
+                        @*else
+                        {
+                            <a class="btn btn-secondary btn-block text-light text-decoration-none" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-plus-circle"></i> Add to Wishlist</a>
+
+                            <a class="btn btn-success btn-block text-light text-decoration-none" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                        }*@
+                    </div>
+                    <div class="price text-center">
+                        <p class="w-75 mx-auto card-text bg-light text-success font-weight-bold rounded-pill animate__animated animate__heartBeat animate__infinite animate__faster">@Html.DisplayFor(modelItem => book.Price)&euro;</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/home/home.js"></script>
+} 

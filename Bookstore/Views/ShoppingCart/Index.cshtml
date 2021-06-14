@@ -1,0 +1,119 @@
+﻿@model Bookstore.Models.ShopCartViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="custom-container mt-4">
+    <h1>Shopping Cart (@Model.AllBooksAddedToCartByLoggedInUser.Count())</h1>
+    @*<partial name="_CounterPartial" />*@
+    <div class="row">
+        <div class="col-12 col-md-9">
+            @foreach (var book in Model.AllBooksAddedToCartByLoggedInUser)
+            {
+                <div class="card mt-3">
+                    <div class="card-body row">
+                        <div class="col-2 col-md-2 borderStyle">
+                            <img src="~/images/@book.PhotoURL" class="img-fluid" />
+                        </div>
+                        <div class="col-10 col-md-10">
+                            <h4 class="card-title"> @Html.DisplayFor(modelItem => book.Title)</h4>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <h6>Author: @Html.DisplayFor(modelItem => book.AuthorName) </h6>
+                                    <h6>BookType: @Html.DisplayFor(modelItem => book.BookType)</h6>
+                                    <h6>Dimensions: @Html.DisplayFor(modelItem => book.Dimensions)</h6>
+                                    <h6>Weight: @Html.DisplayFor(modelItem => book.Weight) </h6>
+                                    <h6>Shipping: @Html.DisplayFor(modelItem => book.Shipping)</h6>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="row">
+                            <div class="col-9 col-md-9">
+                                @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@book.Id">Delete</a>*@
+                                <button class="btn btn-danger" onclick="DeleteItemFromCart(@book.Id)">
+                                    <i class="fas fa-trash-alt"></i> &nbsp; Delete
+                                </button>
+                            </div>
+                            <div class="col-3 col-md-3 text-right">
+                                <h6 class="pt-1">Price: &#36; @Html.DisplayFor(modelItem => book.Price)</h6>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h4 class="card-title">Order Summary</h4>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>@Model.SubTotal</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping</td>
+                                <td>@Model.ShippingTotal</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td>@Model.TotalPrice</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a asp-action="Buy" class="btn btn-success btn-block"> <i class="far fa-credit-card"></i> &nbsp; Buy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        function DeleteItemFromCart(id) {
+            $.ajax({
+                type: "POST",
+                url: "/ShoppingCart/Delete/" + id,
+                success: function (data) {
+                    console.log(data);
+                    new Noty({
+                        type: 'warning',
+                        layout: 'bottomLeft',
+                        timeout: 700,
+                        progressBar: true,
+                        text: 'Successfully Deleted Book: ' + data.data.title + ' From Wishlist',
+                        theme: 'sunset'
+                    }).show();
+
+                    setTimeout(function () {
+                        if (data) {
+                            window.location = data.url;
+                        }
+                    }, 850);
+
+                },
+                error: function () {
+                    new Noty({
+                        type: 'error',
+                        layout: 'bottomLeft',
+                        timeout: 3000,
+                        progressBar: true,
+                        text: 'Error Delete Book From Wishlist',
+                        theme: 'sunset'
+                    }).show();
+                }
+            });
+        };
+    </script>
+
+}

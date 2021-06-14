@@ -1,0 +1,47 @@
+﻿@model Bookstore.Areas.Identity.UserModel
+
+<div class="container">
+    <h2>Create User</h2>
+    <hr />
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> Select Roles:</label>
+            @*<select class="form-control"> <option></option> </select>*@
+            @Html.DropDownListFor(x => Model.RoleId, new SelectList(Model.Roles, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Role" })
+        </div>
+
+        <input type="hidden" asp-for="RoleName" />
+
+        <button type="submit" class="btn btn-block btn-success">
+            <i class="fas fa-save"></i> &nbsp; Create
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $("#Role").change(function () {
+            var optionSelected = $("option:selected", this);
+            var valueSelected = this.value;
+            var textSelected = optionSelected.text();
+            $("#RoleName").val(textSelected);
+
+            console.log($("#RoleName").val(textSelected));
+            console.log(valueSelected);
+            console.log(textSelected);
+        });
+    </script>
+}

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+<div class="container">
+    <h2>User</h2>
+    <hr />
+
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th> Id </th>
+                <th> UserName </th>
+                <th> Email </th>
+                <th colspan="2">
+                    <a asp-action="Create" class="btn btn-block btn-success">
+                        <i class="fas fa-user"></i> &nbsp; Create User
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Microsoft.AspNetCore.Identity.IdentityUser user in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => user.Id) </td>
+                    <td> @Html.DisplayFor(modelItem => user.UserName) </td>
+                    <td> @Html.DisplayFor(modelItem => user.Email) </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-secondary btn-block">
+                            <i class="fas fa-edit"></i> &nbsp; &nbsp; Edit
+                        </a>
+                        <a asp-action="Details" asp-route-id="@user.Id" class="btn btn-info btn-block">
+                            <i class="fas fa-info"></i> &nbsp; &nbsp; Details
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger btn-block">
+                            <i class="fas fa-trash"></i> &nbsp; &nbsp; Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

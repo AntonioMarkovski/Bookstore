@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "font-awesome@5.15.2",
+      "destination": "wwwroot/font-awesome/"
+    },
+    {
+      "library": "jquery-validate@1.19.2",
+      "destination": "wwwroot/jquery-validate/"
+    },
+    {
+      "library": "animate.css@4.1.1",
+      "destination": "wwwroot/css/animate.css/"
+    },
+    {
+      "library": "noty@3.1.4",
+      "destination": "wwwroot/noty/"
+    },
+    {
+      "library": "moment.js@2.29.1",
+      "destination": "wwwroot/moment.js/"
+    }
+  ]
+}

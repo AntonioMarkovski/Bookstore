@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Bookstore.Entities.Book>
+
+<div class="container">
+    <h1>Books</h1>
+    <div class="col-12 col-md-12">
+        <a asp-action="Create" class="btn btn-success m-3" style="float:right">
+            <i class="fas fa-plus-circle"></i>&nbsp; &nbsp;  Create
+        </a>
+    </div>
+
+    <h3>All Books</h3>
+
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th> Title </th>
+                <th> Author </th>
+                <th> Year Of Issue </th>
+                <th> Publisher </th>
+                <th> Category </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => book.Title) </td>
+                    <td> <a href="#">@Html.DisplayFor(modelItem => book.AuthorName) </a> </td>
+                    <td> @Html.DisplayFor(modelItem => book.YearOfIssue) </td>
+                    <td> <a href="#"> @Html.DisplayFor(modelItem => book.PublisherName) </a></td>
+                    <td> <a href="#"> @Html.DisplayFor(modelItem => book.CategoryName) </a></td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-secondary btn-block">
+                            <i class="fas fa-edit"></i> &nbsp; &nbsp; Edit
+                        </a>
+                        <a asp-action="Details" asp-route-id="@book.Id" class="btn btn-info btn-block">
+                            <i class="fas fa-info"></i> &nbsp; &nbsp; Details
+                        </a>
+                        @if (ViewContext.HttpContext.User.IsInRole("admin"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> &nbsp; &nbsp; Delete
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+

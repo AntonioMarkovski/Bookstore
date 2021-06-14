@@ -1,0 +1,327 @@
+﻿/* ---------------------------------GOOGLE FONTS-------------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+/* roboto-300 - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/roboto-v20-latin-300.eot"); /* IE9 Compat Modes */
+    src: local(""), url("../fonts/roboto-v20-latin-300.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/roboto-v20-latin-300.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/roboto-v20-latin-300.woff") format("woff"),
+    /* Modern Browsers */ url("../fonts/roboto-v20-latin-300.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/roboto-v20-latin-300.svg#Roboto") format("svg"); /* Legacy iOS */
+}
+
+/* roboto-regular - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/roboto-v20-latin-regular.eot"); /* IE9 Compat Modes */
+    src: local(""), url("../fonts/roboto-v20-latin-regular.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/roboto-v20-latin-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/roboto-v20-latin-regular.woff") format("woff"),
+    /* Modern Browsers */ url("../fonts/roboto-v20-latin-regular.ttf") format("truetype"),
+    /* Safari, Android, iOS */
+    url("../fonts/roboto-v20-latin-regular.svg#Roboto") format("svg"); /* Legacy iOS */
+}
+
+/* roboto-500 - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/roboto-v20-latin-500.eot"); /* IE9 Compat Modes */
+    src: local(""), url("../fonts/roboto-v20-latin-500.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/roboto-v20-latin-500.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/roboto-v20-latin-500.woff") format("woff"),
+    /* Modern Browsers */ url("../fonts/roboto-v20-latin-500.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/roboto-v20-latin-500.svg#Roboto") format("svg"); /* Legacy iOS */
+}
+
+/* roboto-700 - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/roboto-v20-latin-700.eot"); /* IE9 Compat Modes */
+    src: local(""), url("../fonts/roboto-v20-latin-700.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/roboto-v20-latin-700.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/roboto-v20-latin-700.woff") format("woff"),
+    /* Modern Browsers */ url("../fonts/roboto-v20-latin-700.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/roboto-v20-latin-700.svg#Roboto") format("svg"); /* Legacy iOS */
+}
+
+/* roboto-900 - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 900;
+    src: url("../fonts/roboto-v20-latin-900.eot"); /* IE9 Compat Modes */
+    src: local(""), url("../fonts/roboto-v20-latin-900.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/roboto-v20-latin-900.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/roboto-v20-latin-900.woff") format("woff"),
+    /* Modern Browsers */ url("../fonts/roboto-v20-latin-900.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/roboto-v20-latin-900.svg#Roboto") format("svg"); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: "Papyrus";
+    src: url("../fonts/papyrus.ttf");
+}
+
+/* ---------------------------------THE CSS STYLING-------------------------------------------- */
+
+/*Basic*/
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.error {
+    color: crimson;
+    text-align: center;
+    width: 100%;
+    border-color: crimson;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+header {
+    margin-bottom: 65px;
+}
+
+html {
+    font-size: 14px;
+}
+
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+.btn-custom-upload {
+    border: 1px solid #469b88;
+    background: #dcf0eb;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+/* ******* Search (in Home) ******* */
+
+.search-main {
+    position: relative;
+}
+
+.search-btn-icon {
+    position: absolute !important;
+    top: 20px;
+    margin-left: 5px;
+    font-size: 1.2em;
+    background-color: #EAEAEA;
+}
+
+.search-box-style {
+    height: 50px;
+    background-color: #EAEAEA;
+    padding-left: 3.5rem;
+}
+
+@media (max-width: 800px) {
+    .search-btn {
+        margin-top: 5px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 800px) {
+    .search-btn {
+        position: absolute !important;
+        top: 23px;
+        right: 1.5em;
+        padding-left: 4em;
+        padding-right: 4em;
+    }
+
+    .search-box-style {
+        padding-right: 12rem;
+    }
+}
+
+/* ******* Home INDEX ******* */
+
+.banner-container {
+    position: relative;
+    min-height: 500px;
+}
+
+.bookstore-background {
+    background-image: url("../img/Books_shutterstock_hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute !important;
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    filter: blur(5px);
+}
+
+.banner-text-style1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 30px;
+    padding-left: 5%;
+    font-family: Papyrus;
+    text-shadow: 0 1px 1px #505050, -1px 0px 1px #767676, -2px 3px 1px #000000, -3px 4px 1px #000000, -4px 4px 1px #000000;
+}
+
+.banner-text-style2 {
+    color: white;
+    text-transform: lowercase;
+    font-size: 30px;
+    padding-left: 5%;
+    margin-top: 1%;
+    font-weight: lighter;
+    font-family: Papyrus;
+    text-shadow: 0 1px 1px #505050, -1px 0px 1px #767676, -2px 3px 1px #000000, -3px 4px 1px #000000, -4px 4px 1px #000000;
+}
+
+.quote-text-quote {
+    color: white;
+    padding-left: 5%;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: lighter;
+    margin-top: 1%;
+    text-align: justify;
+}
+
+.quote-text-author {
+    color: white;
+    padding-left: 5%;
+    font-size: 19px;
+    font-family: Roboto;
+    margin-top: 1%;
+}
+
+.quote-text-tags {
+    color: #878787;
+    margin-left: 5%;
+    font-size: 14px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 1%;
+}
+
+/* ******* Book ******* */
+
+.btn-add-new-custom {
+    float: right !important;
+    cursor: pointer !important;
+}
+
+    .btn-add-new-custom:hover {
+        transform: scale(1.05);
+        transition: 0.1s;
+    }
+
+/* ******* FOOTER ******* */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+
+/* ******************** @MEDIAS ******************** */
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* ******************** HOME INDEX CARDS ******************** */
+
+.card .image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.card:hover .image img {
+    opacity: .5;
+    transform: translateX(15%); /*100%*/
+    transition: 1.5s;
+}
+
+.card .card-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%; /*100%*/
+    height: 100%;
+    background: #f8f9fa;
+    transition: .5s;
+    transform-origin: left;
+    transform: perspective(2000px) rotateY(-90deg);
+}
+
+.card:hover .card-body, .card:hover .price {
+    transform: perspective(2000px) rotateY(0deg);
+}
+
+.price {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 30%; /*100%*/
+    height: 10%;
+    font-size: 1rem;
+    transition: .5s;
+    transform-origin: right;
+    transform: perspective(2000px) rotateY(-90deg);
+}
